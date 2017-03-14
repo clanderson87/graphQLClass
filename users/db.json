@@ -1,14 +1,57 @@
 {
-  "users" : [
-    { "id": "23", "firstName": "Bobbie", "age": 23, "companyId": "1" },
-    { "id": "34", "firstName": "Bee", "age": 43, "companyId": "1" },
-    { "id": "45", "firstName": "Bertha", "age": 54, "companyId": "2" },
-    { "id": "56", "firstName": "Beth", "age": 65, "companyId": "2" },
-    { "id": "67", "firstName": "Beatrice", "age": 76, "companyId": "1" },
-    { "id": "78", "firstName": "Betty", "age": 87, "companyId": "2" }
+  "users": [
+    {
+      "id": "23",
+      "firstName": "Bobbie",
+      "age": 23,
+      "companyId": "1"
+    },
+    {
+      "id": "34",
+      "firstName": "Bee",
+      "age": 43,
+      "companyId": "1"
+    },
+    {
+      "id": "45",
+      "firstName": "Bertha",
+      "age": 54,
+      "companyId": "2"
+    },
+    {
+      "id": "56",
+      "firstName": "Beth",
+      "age": 65,
+      "companyId": "2"
+    },
+    {
+      "id": "67",
+      "firstName": "Beatrice",
+      "age": 76,
+      "companyId": "1"
+    },
+    {
+      "id": "78",
+      "firstName": "Betty",
+      "age": 87,
+      "companyId": "2"
+    },
+    {
+      "firstName": "Chris",
+      "age": 29,
+      "id": "HyHTmgLjx"
+    }
   ],
   "companies": [
-    { "id": "1", "name": "Apple", "products": "Overpriced technotrinkets" },
-    { "id": "2", "name": "Google", "products": "LITTERALLY EVERY PIECE OF DATA ABOUT YOU EVER" }
+    {
+      "id": "1",
+      "name": "Apple",
+      "products": "Overpriced technotrinkets"
+    },
+    {
+      "id": "2",
+      "name": "Google",
+      "products": "LITTERALLY EVERY PIECE OF DATA ABOUT YOU EVER"
+    }
   ]
 }

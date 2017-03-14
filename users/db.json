@@ -14,7 +14,7 @@
     },
     {
       "id": "45",
-      "firstName": "Bertha",
+      "firstName": "Berta",
       "age": 54,
       "companyId": "2"
     },
@@ -22,18 +22,6 @@
       "id": "56",
       "firstName": "Beth",
       "age": 65,
-      "companyId": "2"
-    },
-    {
-      "id": "67",
-      "firstName": "Beatrice",
-      "age": 76,
-      "companyId": "1"
-    },
-    {
-      "id": "78",
-      "firstName": "Betty",
-      "age": 87,
       "companyId": "2"
     },
     {

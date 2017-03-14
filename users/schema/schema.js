@@ -4,21 +4,29 @@ const {
   GraphQLObjectType,
   GraphQLInt,
   GraphQLString,
-  GraphQLSchema
+  GraphQLSchema,
+  GraphQLList
 } = graphql;
 
 const CompanyType = new GraphQLObjectType({
   name: 'Company',
-  fields: {
+  fields: () => ({
     id: { type: GraphQLString },
     name: { type: GraphQLString },
-    products: { type: GraphQLString }
-  }
-})
+    products: { type: GraphQLString },
+    users: {
+      type: new GraphQLList(UserType),
+      resolve(parentValue, args){
+        return axios.get(`http://localhost:3000/companies/${parentValue.id}/users`)
+          .then(res => res.data);
+      }
+    }
+  })
+});
 
 const UserType = new GraphQLObjectType({
   name: 'User',
-  fields: {
+  fields: () => ({
     id: { type: GraphQLString },
     firstName: { type: GraphQLString }, //triple check the captialization on these type declarations
     age: { type: GraphQLInt },
@@ -29,7 +37,7 @@ const UserType = new GraphQLObjectType({
           .then(res => res.data);
       }
     }
-  }
+  })
 }); // this is not the schema itself, but the GraphQL schema blueprint.
 
 const RootQuery = new GraphQLObjectType({
@@ -43,6 +51,14 @@ const RootQuery = new GraphQLObjectType({
           .then(resp => resp.data); //trimming the {data:}
       } //resolve's job is to go out and grab REAL data. parentValue will almost never be used. More info later.
         //args represents the args object above. the args argument in this case will be expected to have an id prop.
+    },
+    company: {
+      type: CompanyType,
+      args: { id: { type: GraphQLString } },
+      resolve(parentValue, args) {
+        return axios.get(`http://localhost:3000/companies/${args.id}`)
+          .then(resp => resp.data); //trimming the {data:}
+      }
     }
   }
 });
@@ -51,7 +67,7 @@ module.exports = new GraphQLSchema({
   query: RootQuery
 });
 
-//Below is a example query. Strings provided to the query (like on ln 49) need to be "" not ''!!
+//Below is a example query. Strings provided to the query as args on the RootQuery need to be "" not ''!!
 /*
 {
   user(id: "25") { 
@@ -65,5 +81,5 @@ module.exports = new GraphQLSchema({
   }
 }
 
-notice how this matches up to the fields object of RootQuery, with the args object provided to user() on ln 49.
+notice how this matches up to the fields object of RootQuery, with the args object provided to user().
 */

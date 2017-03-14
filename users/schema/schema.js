@@ -7,12 +7,28 @@ const {
   GraphQLSchema
 } = graphql;
 
+const CompanyType = new GraphQLObjectType({
+  name: 'Company',
+  fields: {
+    id: { type: GraphQLString },
+    name: { type: GraphQLString },
+    products: { type: GraphQLString }
+  }
+})
+
 const UserType = new GraphQLObjectType({
   name: 'User',
   fields: {
     id: { type: GraphQLString },
     firstName: { type: GraphQLString }, //triple check the captialization on these type declarations
-    age: { type: GraphQLInt }
+    age: { type: GraphQLInt },
+    company: {
+      type: CompanyType,
+      resolve(parentValue, args) {
+        return axios.get(`http://localhost:3000/companies/${parentValue.companyId}`)
+          .then(res => res.data);
+      }
+    }
   }
 }); // this is not the schema itself, but the GraphQL schema blueprint.
 
@@ -41,7 +57,11 @@ module.exports = new GraphQLSchema({
   user(id: "25") { 
     id,
     firstName,
-    age
+    age,
+    company {
+      name,
+      products
+    }
   }
 }
 

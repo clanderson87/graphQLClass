@@ -41,4 +41,17 @@ const RootQuery = new GraphQLObjectType({
 
 module.exports = new GraphQLSchema({
   query: RootQuery
-})
+});
+
+//Below is a example query. Strings provided to the query (like on ln 49) need to be "" not ''!!
+/*
+{
+  user(id: "25") { 
+    id,
+    firstName,
+    age
+  }
+}
+
+notice how this matches up to the fields object of RootQuery, with the args object provided to user() on ln 49.
+*/
